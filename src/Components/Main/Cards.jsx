@@ -1,18 +1,12 @@
 import Card from "./Card";
 
 
-const Cards = () => {
+const Cards = ({ pizzas }) => {
     return (
         <div className="content__items">
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
+            {pizzas.map((obj, index) => {
+                return <Card key={`${obj}_${index}`} imageUrl={obj.imageUrl} name={obj.name} price={obj.price} />
+            })}
         </div>
     )
 }

@@ -18,6 +18,7 @@ const Sort = ({ sort }) => {
         <div className="sort">
             <div className="sort__label">
                 <svg
+                    className={sortVisible ? 'rotated' : null}
                     width="10"
                     height="6"
                     viewBox="0 0 10 6"
