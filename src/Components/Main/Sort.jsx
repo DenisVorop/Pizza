@@ -9,8 +9,8 @@ const Sort = ({ sort }) => {
     const [itemActive, setItemActive] = useState('популярности');
     const [sortVisible, setSortVisible] = useState(false);
 
-    const changeSort = (item) => {
-        setItemActive(item)
+    const changeSort = (name) => {
+        setItemActive(name)
         setSortVisible(false)
     }
 
@@ -35,8 +35,8 @@ const Sort = ({ sort }) => {
             </div>
             {sortVisible ? <div className='sort__popup'>
                 <ul>
-                    {sort.map((item, index) => {
-                        return <li className={itemActive === item ? 'active' : null} onClick={() => changeSort(item)} key={`${item}_${index}`}> {item} </li>
+                    {sort.map((obj, index) => {
+                        return <li className={itemActive === obj.name ? 'active' : null} onClick={() => changeSort(obj.name)} key={`${obj.type}_${index}`}> {obj.name} </li>
                     })}
                 </ul>
             </div> : null}
