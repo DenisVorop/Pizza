@@ -4,8 +4,11 @@ const SET_CATEGORY = 'SET_CATEGORY';
 //========================================================================================================================================================
 
 const initialState = {
-    sortBy: 'popular',
-    categorie: 0
+    sortBy: {
+        type: 'popular',
+        order: 'desc',
+    },
+    category: null
 }
 
 //=============REDUCER===========================================================================================================================================
@@ -21,7 +24,7 @@ const filterReducer = (state = initialState, action) => {
         case SET_CATEGORY: {
             return {
                 ...state,
-                categorie: action.payload,
+                category: action.payload,
             }
         }
         default: {
@@ -39,10 +42,10 @@ export const setSortBy = (name) => {
     }
 }
 
-export const setCategory = (index) => {
+export const setCategory = (value) => {
     return {
         type: SET_CATEGORY,
-        payload: index,
+        payload: value,
     }
 }
 

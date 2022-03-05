@@ -3,6 +3,7 @@ import axios from 'axios';
 //========================================================================================================================================================
 
 const SET_PIZZAS = 'SET_PIZZAS';
+const SET_LOADED = 'SET_LOADED';
 
 //========================================================================================================================================================
 
@@ -22,6 +23,12 @@ const pizzasReducer = (state = initialState, action) => {
                 isLoaded: true
             }
         }
+        case SET_LOADED: {
+            return {
+                ...state,
+                isLoaded: action.payload
+            }
+        }
         default: {
             return state;
         }
@@ -37,12 +44,21 @@ export const setPizzas = (items) => {
     }
 }
 
+export const setLoaded = (payload) => {
+    return {
+        type: SET_LOADED,
+        payload
+    }
+}
+
 //============THUNKS============================================================================================================================================
 
-export const fetchPizzas = () => (dispatch) => {
-    axios.get('http://localhost:3001/pizzas').then(({ data }) => {
-        dispatch(setPizzas(data));
-    })
+export const fetchPizzas = (sortBy, category) => (dispatch) => {
+    dispatch(setLoaded(false));
+    axios.get(`http://localhost:3001/pizzas?${category !== null ? `category=${category}` : ''}&_sort=${sortBy.type}&_order=${sortBy.order}`)
+        .then(({ data }) => {
+            dispatch(setPizzas(data));
+        })
 }
 
 //========================================================================================================================================================
