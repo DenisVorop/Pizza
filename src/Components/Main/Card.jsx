@@ -1,7 +1,6 @@
 import React from 'react';
 import { useState } from "react";
 
-
 //========================================================================================================================================================
 
 const state = {
@@ -16,7 +15,7 @@ const state = {
     ]
 }
 
-const Card = ({imageUrl, name, price}) => {
+const Card = ({ imageUrl, name, price }) => {
 
     const [sizeActive, setSizeActive] = useState(state.crust[0].thin);
     const [crustActive, setCrustActive] = useState(state.size[1].medium);

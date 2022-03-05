@@ -1,13 +1,19 @@
 import Cards from "../../Components/Main/Cards";
 import Categories from "../../Components/Main/Categories";
 import Sort from "../../Components/Main/Sort";
-import { useSelector } from 'react-redux';
+
+import { useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchPizzas } from "../../Redux/Reducers/PizzasReducer";
 
 //========================================================================================================================================================
 
 const Home = () => {
 
     const items = useSelector(({ pizzasReducer }) => pizzasReducer.items);
+    const isLoaded = useSelector(({ pizzasReducer }) => pizzasReducer.isLoaded);
+    const dispatch = useDispatch();
+
     const categoryNames = [
         { type: null, name: 'Все' },
         { type: 0, name: 'Мясные' },
@@ -22,6 +28,10 @@ const Home = () => {
         { type: 'alphabet', name: 'алфавиту' }
     ];
 
+    useEffect(() => {
+        dispatch(fetchPizzas());
+    }, [])
+
     return (
         <div className="container">
             <div className="content__top">
@@ -29,7 +39,7 @@ const Home = () => {
                 <Sort sort={sortNames} />
             </div>
             <h2 className="content__title">Все пиццы</h2>
-            <Cards items={items} />
+            <Cards items={items} isLoaded={isLoaded} />
         </div>
     )
 }
