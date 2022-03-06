@@ -2,7 +2,6 @@
   "name": "pizza",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://denisvorop.github.io/Pizza",
   "dependencies": {
     "@babel/core": "^7.16.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.3",
