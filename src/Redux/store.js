@@ -3,6 +3,7 @@ import thunk from 'redux-thunk';
 
 import filterReducer from "./Reducers/FilterReducer";
 import pizzasReducer from "./Reducers/PizzasReducer";
+import cartReducer from "./Reducers/CartReducer";
 
 //========================================================================================================================================================
 
@@ -10,6 +11,7 @@ const reducers = combineReducers(
     {
         filterReducer,
         pizzasReducer,
+        cartReducer,
     }
 );
 

@@ -3,29 +3,27 @@ import { useState } from "react";
 
 //========================================================================================================================================================
 
-const state = {
-    crust: [
-        { thin: 'тонкое' },
-        { traditional: 'традиционное' }
-    ],
-    size: [
-        { small: '26 см.' },
-        { medium: '30 см.' },
-        { big: '40 см.' }
-    ]
+const initialState = {
+    crust: ['тонкое', 'традиционное'],
+    size: [26, 30, 40]
 }
 
-const Card = ({ imageUrl, name, price }) => {
+const Card = ({ id, imageUrl, name, price, onAddPizza, countToCart }) => {
 
-    const [sizeActive, setSizeActive] = useState(state.crust[0].thin);
-    const [crustActive, setCrustActive] = useState(state.size[1].medium);
+    const [crustActive, setCrustActive] = useState(initialState.crust[0]);
+    const [sizeActive, setSizeActive] = useState(initialState.size[1]);
 
-    const changeSize = (size) => {
+    const onChangeSize = (size) => {
         setSizeActive(size)
     }
 
-    const changeCrust = (crust) => {
+    const onChangeCrust = (crust) => {
         setCrustActive(crust)
+    }
+
+    const onCLickAddPizza = () => {
+        const obj = { id, imageUrl, name, price, size: sizeActive, type: crustActive }
+        onAddPizza(obj);
     }
 
     return (
@@ -38,18 +36,18 @@ const Card = ({ imageUrl, name, price }) => {
             <h4 className="pizza-block__title">{name}</h4>
             <div className="pizza-block__selector">
                 <ul>
-                    <li className={sizeActive === state.crust[0].thin ? 'active' : null} onClick={() => changeSize(state.crust[0].thin)}>{state.crust[0].thin}</li>
-                    <li className={sizeActive === state.crust[1].traditional ? 'active' : null} onClick={() => changeSize(state.crust[1].traditional)}>{state.crust[1].traditional}</li>
+                    <li className={crustActive === initialState.crust[0] ? 'active' : null} onClick={() => onChangeCrust(initialState.crust[0])}>{initialState.crust[0]}</li>
+                    <li className={crustActive === initialState.crust[1] ? 'active' : null} onClick={() => onChangeCrust(initialState.crust[1])}>{initialState.crust[1]}</li>
                 </ul>
                 <ul>
-                    <li className={crustActive === state.size[0].small ? 'active' : null} onClick={() => changeCrust(state.size[0].small)}>{state.size[0].small}</li>
-                    <li className={crustActive === state.size[1].medium ? 'active' : null} onClick={() => changeCrust(state.size[1].medium)}>{state.size[1].medium}</li>
-                    <li className={crustActive === state.size[2].big ? 'active' : null} onClick={() => changeCrust(state.size[2].big)}>{state.size[2].big}</li>
+                    <li className={sizeActive === initialState.size[0] ? 'active' : null} onClick={() => onChangeSize(initialState.size[0])}>{initialState.size[0]} cm.</li>
+                    <li className={sizeActive === initialState.size[1] ? 'active' : null} onClick={() => onChangeSize(initialState.size[1])}>{initialState.size[1]} cm.</li>
+                    <li className={sizeActive === initialState.size[2] ? 'active' : null} onClick={() => onChangeSize(initialState.size[2])}>{initialState.size[2]} cm.</li>
                 </ul>
             </div>
             <div className="pizza-block__bottom">
                 <div className="pizza-block__price">от {price} ₽</div>
-                <div className="button button--outline button--add">
+                <div className="button button--outline button--add" onClick={onCLickAddPizza}>
                     <svg
                         width="12"
                         height="12"
@@ -63,7 +61,7 @@ const Card = ({ imageUrl, name, price }) => {
                         />
                     </svg>
                     <span>Добавить</span>
-                    <i>2</i>
+                    {countToCart && <i>{countToCart}</i>}
                 </div>
             </div>
         </div>

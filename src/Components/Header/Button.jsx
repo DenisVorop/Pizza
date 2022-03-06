@@ -1,11 +1,15 @@
 import { NavLink } from "react-router-dom";
+import { useSelector } from 'react-redux';
 
+//========================================================================================================================================================
 
 const Button = () => {
+    const { totalPrice, totalCount } = useSelector(({ cartReducer }) => cartReducer);
+
     return (
         <div className="header__cart">
             <NavLink to='cart' className="button button--cart">
-                <span>520 ₽</span>
+                <span>{totalPrice} ₽</span>
                 <div className="button__delimiter"></div>
                 <svg
                     width="18"
@@ -36,10 +40,12 @@ const Button = () => {
                         strokelnejoin="round"
                     />
                 </svg>
-                <span>3</span>
+                <span>{totalCount}</span>
             </NavLink>
         </div>
     )
 }
+
+//========================================================================================================================================================
 
 export default Button;

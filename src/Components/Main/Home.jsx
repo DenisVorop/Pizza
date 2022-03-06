@@ -2,10 +2,11 @@ import Cards from "../../Components/Main/Cards";
 import Categories from "../../Components/Main/Categories";
 import Sort from "../../Components/Main/Sort";
 
-import { useCallback, useEffect } from "react";
-import { useDispatch, useSelector } from 'react-redux';
 import { fetchPizzas } from "../../Redux/Reducers/PizzasReducer";
 import { setCategory, setSortBy } from "../../Redux/Reducers/FilterReducer";
+
+import { useCallback, useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux';
 
 //========================================================================================================================================================
 
@@ -13,10 +14,8 @@ const Home = () => {
 
     const dispatch = useDispatch();
 
-    const items = useSelector(({ pizzasReducer }) => pizzasReducer.items);
-    const isLoaded = useSelector(({ pizzasReducer }) => pizzasReducer.isLoaded);
-    const category = useSelector(({ filterReducer }) => filterReducer.category);
-    const sortBy = useSelector(({ filterReducer }) => filterReducer.sortBy);
+    const { items, isLoaded } = useSelector(({ pizzasReducer }) => pizzasReducer);
+    const { category, sortBy } = useSelector(({ filterReducer }) => filterReducer);
 
     const categoryNames = ['Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
     const sortItems = [
