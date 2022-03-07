@@ -1,6 +1,7 @@
-import Cart from "./Components/Cart/Cart";
+import Home from './Pages/Home';
+import Cart from "./Pages/Cart";
+
 import Header from "./Components/Header/Header";
-import Home from "./Components/Main/Home";
 import NotFound from "./Components/NotFound/NotFound";
 
 import { Route, Routes } from "react-router-dom";

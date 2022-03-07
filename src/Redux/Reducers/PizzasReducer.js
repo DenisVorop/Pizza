@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { sortPizzasAPI } from '../../api/api';
 
 //========================================================================================================================================================
 
@@ -53,12 +53,12 @@ export const setLoaded = (payload) => {
 
 //============THUNKS============================================================================================================================================
 
-export const fetchPizzas = (sortBy, category) => (dispatch) => {
-    dispatch(setLoaded(false));
-    axios.get(`/pizzas?${category !== null ? `category=${category}` : ''}&_sort=${sortBy.type}&_order=${sortBy.order}`)
-        .then(({ data }) => {
-            dispatch(setPizzas(data));
-        })
+export const fetchPizzas = (sortBy, category) => {
+    return async (dispatch) => {
+        dispatch(setLoaded(false));
+        const data = await sortPizzasAPI.sortPizzas(category, sortBy);
+        dispatch(setPizzas(data));
+    }
 }
 
 //========================================================================================================================================================

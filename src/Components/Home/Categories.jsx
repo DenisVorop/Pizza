@@ -12,7 +12,8 @@ const Categories = ({ activeCategory, items, onClickCategory }) => {
                     Все
                 </li>
                 {items.map((name, index) => {
-                    return <li className={activeCategory === index ? 'active' : null} onClick={() => onClickCategory(index)} key={`${name}_${index}`}> {name} </li>
+                    return <li
+                    className={activeCategory === index ? 'active' : null} onClick={() => onClickCategory(index)} key={`${name}_${index}`}> {name} </li>
                 })}
             </ul>
         </div>

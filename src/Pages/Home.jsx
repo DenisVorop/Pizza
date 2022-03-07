@@ -1,9 +1,9 @@
-import Cards from "../../Components/Main/Cards";
-import Categories from "../../Components/Main/Categories";
-import Sort from "../../Components/Main/Sort";
+import Cards from "../Components/Home/Cards";
+import Categories from "../Components/Home/Categories";
+import Sort from "../Components/Home/Sort";
 
-import { fetchPizzas } from "../../Redux/Reducers/PizzasReducer";
-import { setCategory, setSortBy } from "../../Redux/Reducers/FilterReducer";
+import { fetchPizzas } from "../Redux/Reducers/PizzasReducer";
+import { setCategory, setSortBy } from "../Redux/Reducers/FilterReducer";
 
 import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
@@ -50,7 +50,10 @@ const Home = () => {
                 />
             </div>
             <h2 className="content__title">Все пиццы</h2>
-            <Cards items={items} isLoaded={isLoaded} />
+            <Cards
+                items={items}
+                isLoaded={isLoaded}
+            />
         </div>
     )
 }

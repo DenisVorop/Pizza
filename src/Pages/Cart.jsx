@@ -1,5 +1,6 @@
-import EmptyCart from './EmptyCart';
-import NotEmptyCart from './NotEmptyCart';
+import EmptyCart from '../Components/Cart/EmptyCart';
+import NotEmptyCart from '../Components/Cart/NotEmptyCart';
+
 import { useSelector } from 'react-redux';
 
 //========================================================================================================================================================
